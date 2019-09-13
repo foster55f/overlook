@@ -11,6 +11,12 @@ class Booking {
       .then(data => data.json())
       .then(data => data.bookings.forEach(booking => Booking.all.push(new Booking(booking))))
       .catch(err => console.log(err));
+      console.log(Booking.all)
+    
+  }
+
+  totalRoomsAvailableTodaysDate() {
+    
   }
   
 }

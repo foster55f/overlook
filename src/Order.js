@@ -12,9 +12,9 @@ class Order {
     fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices")
       .then(data => data.json())
       .then(data => data.roomServices.forEach(order => { 
-        let menuItemId = MenuItem.findOrCreateMenuItem(order.food, order.totalCost);
-        order.menuItemId = menuItemId;
-        Order.all.push(new Order(order))
+          let menuItemId = MenuItem.findOrCreateMenuItem(order.food, order.totalCost);
+          order.menuItemId = menuItemId;
+          Order.all.push(new Order(order))
       }))  
       .catch(err => console.log(err));
   }   

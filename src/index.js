@@ -7,24 +7,39 @@ import Room from './Room';
 import Booking from './Booking';
 import Order from './Order';
 import MenuItem from './MenuItem';
+import domUpdates from "./domUpdates";
 
 
 let customer;
+let date;
 
 
-$(window).on("load",(e) => {
+$(window).on("load", (e) => {
+    date = domUpdates.getDate();
     e.preventDefault();
     Customer.loadFromData();
     Room.loadFromData();
     Booking.loadFromData();
     Order.loadFromData();
+    domUpdates.appendDateToDom(date);
 });
 
-$('#main').click(function() {
-    $('.welcome-banner').hide();
-    $('.main-game').fadeIn('swing');
-    $(".questions__current--question--prompt").hide();
-    $(".questions__current--question").hide();
+$('.main').click(function() {
+    $(".main-section").toggle();
+})
+  
+$('.orders').click(function() {
+    $(".orders-section").toggle();
+})
+  
+$('.rooms').click(function() {
+    $(".rooms-section").toggle();
+
+})
+  
+$('.customer').click(function() {
+    $(".customer-section").toggle();
+    
   })
 
     
