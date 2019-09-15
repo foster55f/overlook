@@ -1,6 +1,20 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: white;
+$primary-background: green;
 
 body {
   background-color: $primary-background;
+}
+
+h2 {
+  font-size: 30px;
+  color: red;
+}
+
+h3 {
+  font-size: 30px;
+  color: red;
+}
+
+.hidden {
+  display: none
 }

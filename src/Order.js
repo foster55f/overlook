@@ -14,10 +14,40 @@ class Order {
       .then(data => data.roomServices.forEach(order => { 
           let menuItemId = MenuItem.findOrCreateMenuItem(order.food, order.totalCost);
           order.menuItemId = menuItemId;
-          Order.all.push(new Order(order))
+        Order.all.push(new Order(order))
       }))  
       .catch(err => console.log(err));
   }   
+
+  static findOrdersForDate(date) {
+    return Order.all.filter(order => {
+      return order.date === date
+    })
+  }
+
+  static findTotalOrderRevenueForDate(date) {
+    var orders;
+    if (date) {
+      orders = Order.findOrdersForDate(date)
+    } else {
+      orders = Order.all
+    }
+
+    let menuItemIds = orders.map(order => order.menuItemId);
+    let menuItems = MenuItem.findById(menuItemIds);
+   
+
+    var orderRevenue = menuItems.reduce((acc, item) => {
+      acc += item.cost;
+      return acc
+    }, 0)
+    return orderRevenue.toFixed(2)
+  }
+
+
+  // Breakdown of dates and dollar amounts for room service
+  // - Total dollar amount spent on room service for a particular day
+  // - Total dollar amount spent on room service for all days ever
 }
     
 Order.all = [];

@@ -10,6 +10,13 @@ class Customer {
       .then(data => data.users.forEach(user => Customer.all.push(new Customer(user))))
       .catch(err => console.log(err));
   }
+
+  static findAllByName(name) {
+    var foundName = Customer.all.filter(person => {
+      return person.name.toLowerCase().startsWith(name.toLowerCase());
+    })
+    return foundName
+  }
 }
 
 Customer.all = []

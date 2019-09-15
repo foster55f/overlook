@@ -5,17 +5,43 @@
   </head>
   <body>
     <main>
+      <label class = "tab">History</label>
+      <p class = 'selected-customer'></p>
       <h1></h1>
+      <h2></h2>
+      <h3></h3>
+      <h4></h4>
       <section>
           <div class="tab">
               <button class="main">Main</button>
-              <section class = main-section>
-                  <h1>Welcome</h1>
+              <section class = "main-section">
                 </section>
               <button class="orders">Orders</button>
+              <section class = "order-section">
+                <section class = "order-results">
+                </section>
+                </section>
               <button class="rooms">Rooms</button>
+              <section class = "rooms-section">
+                  <p></p>
+                  <p></p>
+                </section>
               <button class="customer">Customer</button>
           </div>
+      </section>
+      <section class = "customer-section">
+          <label for="site-search">Search for a current customer:</label>
+          <input type="search" id="customer-search">
+          <ul class = "customer-results">
+          </ul>
+          <h5></h5>
+          <form action="">
+            <p>Create New Customer</p>
+                <label for="name"><b>Name</b></label>
+                <input class = "create-customer-input" placeholder="Enter Name" name="name" required>
+                <button class = "create-customer-button" disabled = "true">Create Customer</button>
+          </form>
+        <p></p>
       </section>
     <main>
   </body>
