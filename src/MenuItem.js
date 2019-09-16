@@ -19,8 +19,6 @@ class MenuItem {
 
   static findMenuItemOrderedByDate(date) {
     MenuItem.all.filter(item => console.log(item ))
-    console.log(MenuItem.all)
-    console.log(date)
   }
 
   static findById(ids) {

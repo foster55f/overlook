@@ -23,15 +23,15 @@ class Booking {
     return bookedRoomIds
   }
 
-  static sortByDate() {
-    return Booking.all.reduce((acc, booking) => {
-      if (!acc[booking.date]) {
-        acc[booking.date] = []
-      }
-      acc[booking.date].push(booking.roomNumber);
-      return acc
-    }, {})
-  }
+  // static sortByDate() {
+  //   return Booking.all.reduce((acc, booking) => {
+  //     if (!acc[booking.date]) {
+  //       acc[booking.date] = []
+  //     }
+  //     acc[booking.date].push(booking.roomNumber);
+  //     return acc
+  //   }, {})
+  // }
 
   static occupiedRoomNumbersByDate() {
     return Booking.all.reduce((acc, booking) => {
@@ -69,12 +69,6 @@ class Booking {
   })
   }
 }
-  // Summary of all past and current bookings
-
-  // Most popular booking date 
-  // The date with the most rooms available
-    // Reduce method with objects with key of date and value of number
-
   
 Booking.all = []
   

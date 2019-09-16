@@ -20,7 +20,6 @@ class Order {
   }   
 
   static findOrdersForDate(date, orders = Order.all) {
-    console.log(orders)
     return orders.filter(order => {
       return order.date === date
     })
@@ -43,10 +42,6 @@ class Order {
     return orderRevenue.toFixed(2)
   }
 
-
-  // Breakdown of dates and dollar amounts for room service
-  // - Total dollar amount spent on room service for a particular day
-  // - Total dollar amount spent on room service for all days ever
 }
     
 Order.all = [];
