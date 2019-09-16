@@ -16,7 +16,7 @@ let date;
 
 $(window).on("load", (e) => {
     // date = domUpdates.getDate();
-    date = "2019/10/18"
+    date = "2019/09/28"
     e.preventDefault();
     Customer.loadFromData();
     Room.loadFromData();
@@ -31,11 +31,10 @@ $('.main').click(function () {
     let bookedRoomIds = Booking.findBookedRooms(date)
     let availableRooms = Room.findAvailableRooms(bookedRoomIds)
     let totalRevenue = Room.findTotalRoomRevenue(availableRooms);
-    let orderRevenue = Order.findTotalOrderRevenueForDate(date);
+    let orderRevenue = Order.findTotalOrderRevenue();
     let revenue = parseFloat(totalRevenue) + parseFloat(orderRevenue);
     let percentOccupied = Room.calculateRoomPercentageOccupied(availableRooms)
     // let menuItemOrders = MenuItem.findMenuItemOrderedToday(date)
-    Order.findTotalOrderRevenueForDate(); 
     domUpdates.appendTotalRoomsAvailableToDom(availableRooms.length);
     domUpdates.appendTotalDailyRevenueToDom(revenue);
     // domUpdates.appendTotalPercentOccupied(percentOccupied);
@@ -45,7 +44,17 @@ $('.main').click(function () {
 $('.orders').click(function () {
     $(".orders-section").toggle();
     if (selectedCustomer) {
-        
+        let customerOrders = Order.findAllByCustomerId(selectedCustomer.id)
+        if (customerOrders.length === 0) {
+            domUpdates.appendNoOrdersFound() 
+        } else {
+            domUpdates.appendOrders(customerOrders)
+            let customerOrdersForToday = Order.findOrdersForDate(customerOrders, date);
+            let customerOrderRevenueForToday = Order.findTotalOrderRevenue(customerOrdersForToday);
+            let customerOrderTotalRevenue = Order.findTotalOrderRevenue(customerOrders)
+            domUpdates.appendCustomerOrderRevenue(customerOrderRevenueForToday)
+            domUpdates.appendCustomerTotalOrderRevenue(customerOrderTotalRevenue)
+        }
     } else {
         let orders = Order.findOrdersForDate(date)
         domUpdates.appendOrders(orders)
@@ -59,24 +68,34 @@ $('.orders').click(function () {
 })
   
 $('.rooms').click(function () {
-    // let totalRevenue = Room.findTotalRoomRevenue(availableRooms);
-    // Booking.occupiedRoomNumbersByDate()
-    // Booking.findDateLeastRoomsBooked()
-    // Booking.findDateMostRoomsBooked()
+    // $(".rooms-section").toggle();    
     let bookedRoomIds = Booking.findBookedRooms(date)
     let availableRooms = Room.findAvailableRooms(bookedRoomIds)
-    console.log(Room.filterByType("residential suite", availableRooms))
-    // console.log(Booking.customerPastCurrentBookings(23))
-    $(".rooms-section").toggle();
+    // let totalRevenue = Room.findTotalRoomRevenue(availableRooms);
+    let occupiedRoomNumbers = Booking.occupiedRoomNumbersByDate()
+
+    if (selectedCustomer) {
+        let customerBookings = Booking.findAllByCustomer(selectedCustomer.id);
+        if (customerBookings.length === 0) {
+            domUpdates.appendNoBookingInfoFound()
+        }
+        domUpdates.appendCustomerBookings(customerBookings, date)
+        domUpdates.appendRoomsAvailableInfo(availableRooms)  
+    } else {       
+        let leastPopularDate = Booking.findDateLeastRoomsBooked()
+        let mostPopularDate = Booking.findDateMostRoomsBooked();
+        domUpdates.appendDefaultRoomTabData(mostPopularDate, leastPopularDate);
+    }
+    
 })
   
 $('.customer').click(function() {
-    $(".customer-section").toggle();    
+    $('.customer-section').toggle();    
     
 })
 
-$('.create-customer-button').click(function() {    
-    $('.create-customer-input').val()
+$('.create-booking-button').click(function() {    
+    $('.roomtype-menu').show()
 
 })
 
@@ -112,7 +131,14 @@ $('.customer-results').click((e) => {
     selectedCustomer = customer
     domUpdates.appendSelectedCustomer(selectedCustomer)
 })
-  
+
+$('.rooms-section').click(function (e) {    
+    if (e.target.className === "room-service-button") {
+        $('.rooms-section').empty()
+        domUpdates.appendMenuItems(MenuItem.all) 
+    }
+})
+
 
   
 

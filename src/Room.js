@@ -18,7 +18,6 @@ class Room {
 
   static findAvailableRooms(occupiedRoomNumbers) {
     var array = Room.all.filter(room => {
-      // current room is not included in occupied room numbers
       return !occupiedRoomNumbers.includes(room.roomNumber)
     })
     return array

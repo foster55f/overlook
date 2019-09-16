@@ -47,6 +47,7 @@ export default {
     },
 
     appendOrders(orders) {
+        $('.order-results').empty()
         orders.forEach(order => {
             $('.order-results').append('<section></section>')
             $('.order-results').children().last().addClass('order-detail').append('<p></p>');
@@ -77,5 +78,69 @@ export default {
     noCustomersFound() {
         $('.customer-results').empty()
         $('.customer-results').append('<p> No Customers Found</p>')
+    },
+
+    appendCustomerOrderRevenue(revenue) {
+        $('.order-results').append(`<p>Total room service bill for today: ${revenue}</p>`)
+    },
+
+    appendCustomerTotalOrderRevenue(revenue) {
+        $('.order-results').append(`<p>Total room service bill for all time: ${revenue}</p>`)
+    },
+
+    appendNoOrdersFound() {
+        $('.order-results').empty()
+        $('.order-results').append(`<p>No Orders found</p>`)
+    },
+
+    appendDefaultRoomTabData(mostPopularDate, leastPopularDate) {
+        $('.rooms-section').empty()
+        $('.rooms-section').append(`<p>Most popular date: ${mostPopularDate}</p>`)
+        $('.rooms-section').append(`<p>Date with most rooms available: ${leastPopularDate}</p>`)
+    },
+
+    appendCustomerBookings(bookings, date) {
+        bookings.forEach(booking => {
+            $('.rooms-section').append(`
+            <div class="room-available">
+            <p>Id: ${booking.id}</p>
+            <p>Booking Date: ${booking.date}</p>
+            <p>Room Number: ${booking.roomNumber}</p>
+            </div>`)
+            if (booking.date === date) {
+                $('.room-available').last().append(`<button class="room-service-button">Create New Room Service Order</button>`)
+            }
+        })
+    },
+
+    appendNoBookingInfoFound() {
+        $('.rooms-section').empty()
+        $('.rooms-section').append(`<p>No past bookings found</p>`)
+        $('.rooms-section').append(`<button>Create new Booking</button>`)
+
+    },
+
+    appendRoomsAvailableInfo(roomsAvailable) {
+        roomsAvailable.forEach(room => {
+            $('.rooms-section').append(`
+            <div class="room-available">
+            <p>Room: ${room.bedSize}</p>
+            <p>Room Type: ${room.roomType}</p>
+            <p>Bidet Availability: ${room.bidetAvailable}</p>
+            <p>Number of Beds: ${room.numberOfBeds}</p>
+            </div>`)
+        })
+    },
+
+    appendMenuItems(menuItems) {
+        menuItems.forEach(item => {
+            $('.rooms-section').append(`
+            <div class="menu-item">
+            <p>Id: ${item.id}</p>
+            <p>Food Item: ${item.name}</p>
+            <p>Food Cost: ${item.cost}</p>
+            <button>Purchase</button>
+            </div>`)
+        })
     }
 }
