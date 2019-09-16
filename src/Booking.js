@@ -43,27 +43,27 @@ class Booking {
     }, {})
   }
 
-  // static findDateLeastRoomsBooked() {
-  //   var bookingCountsByDate = Booking.occupiedRoomNumbersByDate()
-  //   return Object.keys(bookingCountsByDate).reduce((a, b) => {
-  //     if (bookingCountsByDate[a].length < bookingCountsByDate[b].length) {
-  //       return a
-  //     } 
-  //     return b
-  //   })
-  // }
+  static findDateLeastRoomsBooked() {
+    var bookingCountsByDate = Booking.occupiedRoomNumbersByDate()
+    return Object.keys(bookingCountsByDate).reduce((a, b) => {
+      if (bookingCountsByDate[a].length < bookingCountsByDate[b].length) {
+        return a
+      } 
+      return b
+    })
+  }
 
-  // static findDateMostRoomsBooked() {
-  //   var bookingCountsByDate = Booking.occupiedRoomNumbersByDate()
-  //   return Object.keys(bookingCountsByDate).reduce((a, b) => {
-  //     if (bookingCountsByDate[a].length > bookingCountsByDate[b].length) {
-  //       return a
-  //     } 
-  //     return b
-  //   })
-  // }
+  static findDateMostRoomsBooked() {
+    var bookingCountsByDate = Booking.occupiedRoomNumbersByDate()
+    return Object.keys(bookingCountsByDate).reduce((a, b) => {
+      if (bookingCountsByDate[a].length > bookingCountsByDate[b].length) {
+        return a
+      } 
+      return b
+    })
+  }
 
-  static customerPastCurrentBookings(customerId) {
+  static findAllByCustomer(customerId) {
     return Booking.all.filter(booking => {
       return booking.customerId === customerId
   })

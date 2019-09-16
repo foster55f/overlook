@@ -19,23 +19,22 @@ class Order {
       .catch(err => console.log(err));
   }   
 
-  static findOrdersForDate(date) {
-    return Order.all.filter(order => {
+  static findOrdersForDate(date, orders = Order.all) {
+    console.log(orders)
+    return orders.filter(order => {
       return order.date === date
     })
   }
 
-  static findTotalOrderRevenueForDate(date) {
-    var orders;
-    if (date) {
-      orders = Order.findOrdersForDate(date)
-    } else {
-      orders = Order.all
-    }
+  static findAllByCustomerId(customerId) {
+    return Order.all.filter((order) => {
+      return order.customerId === customerId
+    })
+  }
 
+  static findTotalOrderRevenue(orders = Order.all) {
     let menuItemIds = orders.map(order => order.menuItemId);
     let menuItems = MenuItem.findById(menuItemIds);
-   
 
     var orderRevenue = menuItems.reduce((acc, item) => {
       acc += item.cost;
