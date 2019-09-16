@@ -44,7 +44,6 @@ it('should display the date rooms are least booked', () => {
 })
   
 it('should display the date the most rooms are booked', () => {
-  console.log(Booking.findDateMostRoomsBooked());
   expect(Booking.findDateMostRoomsBooked()).to.eql('2019/09/01');
 })
   
