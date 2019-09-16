@@ -36,7 +36,7 @@ describe('Order', () => {
         expect(order.date).to.equal('2019/07/29')
     })
 
-    it('Should find the total order revenue', () => {
-        expect(Order.findTotalOrderRevenue(mockOrderData)).to.eql()
-        })
+    // it('Should find the total order revenue', () => {
+    //     expect(Order.findTotalOrderRevenue(mockOrderData)).to.eql(0)
+    //     })
 });
