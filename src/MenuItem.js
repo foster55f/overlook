@@ -17,15 +17,13 @@ class MenuItem {
     return newItem.id;
   }
 
-  static findMenuItemOrderedByDate(date) {
-    MenuItem.all.filter(item => console.log(item ))
-    console.log(MenuItem.all)
-    console.log(date)
-  }
+  // static findMenuItemOrderedByDate(date) {
+  //   MenuItem.all.filter(item => console.log(item ))
+  // }
 
   static findById(ids) {
     return MenuItem.all.filter(item => {
-      return ids.includes(item.id)
+      return item.includes(ids)
     })
   }
 }
