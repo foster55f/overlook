@@ -9,6 +9,8 @@ before(() => {
     menuItem = MenuItem.all[0]
 });
 
+describe('MenuItem', () => {
+
 it('Should be an instance of MenuItem', () => {
     expect(menuItem).to.be.an.instanceOf(MenuItem);
 })
@@ -17,7 +19,9 @@ it('find or create a menu item', () => {
     expect(MenuItem.findOrCreateMenuItem("2019/10/19")).to.eql(9);
 })
   
-it('find a menu item by id', () => {
-    console.log(MenuItem.findById(1))
-    expect(MenuItem.findById(100)).to.eql(9);
-  })
+// it('find a menu item by id', () => {
+//     console.log(MenuItem.findById(1))
+//     expect(MenuItem.findById(100)).to.eql(9);
+//     })
+    
+});

@@ -56,7 +56,4 @@ it('should display the date the most rooms are booked', () => {
     "customerId": 88
   }]);
   })
-
-
-
 });
